@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Govind Kumar — SEO Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1D9E75;
+    --accent2: #7F77DD;
+    --amber: #BA7517;
+    --bg: #0d0f0e;
+    --surface: #141714;
+    --surface2: #1a1d1a;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(29,158,117,0.3);
+    --text: #e8ede9;
+    --muted: #7a8c7d;
+    --ff-head: 'Syne', sans-serif;
+    --ff-mono: 'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* grid bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29,158,117,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,158,117,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--ff-head);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(29,158,117,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-name {
+    font-family: var(--ff-head);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name .highlight { color: var(--accent); }
+  .hero-role {
+    font-size: 12px;
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    background: rgba(29,158,117,0.08);
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-bio {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    max-width: 520px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+  }
+  .stat-num {
+    font-family: var(--ff-head);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 3px;
+  }
+  .hero-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-chip svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  .avatar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1D9E75, #7F77DD);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-head);
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    border: 2px solid var(--border);
+  }
+  .availability {
+    font-size: 10px;
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    background: rgba(29,158,117,0.08);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 3.5rem; animation: fadeUp 0.6s ease both; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.4s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .section-title {
+    font-family: var(--ff-head);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* SKILLS */
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .skill:hover { border-color: var(--border-accent); color: var(--accent); background: rgba(29,158,117,0.06); }
+  .skill.green { border-color: rgba(29,158,117,0.25); color: var(--accent); background: rgba(29,158,117,0.06); }
+  .skill.purple { border-color: rgba(127,119,221,0.25); color: var(--accent2); background: rgba(127,119,221,0.06); }
+  .skill.amber { border-color: rgba(186,117,23,0.25); color: var(--amber); background: rgba(186,117,23,0.06); }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1px; }
+  .exp-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: var(--surface);
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 12px;
+  }
+  .exp-card:hover { border-color: rgba(29,158,117,0.2); background: var(--surface2); }
+  .exp-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    gap: 1rem;
+  }
+  .exp-company {
+    font-family: var(--ff-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .exp-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-current { background: rgba(29,158,117,0.12); color: var(--accent); border: 1px solid rgba(29,158,117,0.25); }
+  .badge-past { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid var(--border); }
+  .exp-role { font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .exp-bullets li {
+    font-size: 12px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+  .exp-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+  }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .edu-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    background: var(--surface);
+  }
+  .edu-degree {
+    font-family: var(--ff-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .edu-school { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-text { font-size: 11px; color: var(--muted); }
+  .footer-text span { color: var(--accent); }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .hero { grid-template-columns: 1fr; }
+    .avatar-block { flex-direction: row; }
+    .edu-grid { grid-template-columns: 1fr; }
+    nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo"><span>@</span>GovindKumar</a>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="mailto:govindydav65525@gmail.com">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-name">GOVIND<br><span class="highlight">KUMAR</span></div>
+      <div class="hero-role">SEO Executive · Digital Marketer · Video Editor</div>
+      <p class="hero-bio">
+        Results-driven SEO Executive with 3+ years of experience in On-page, Off-page & Technical SEO.
+        Skilled in keyword research, content optimization, link-building & SEO audits.
+        Experienced in YouTube SEO, Video Editing & Social Media campaigns.
+        Focused on implementing data-driven strategies to improve rankings, traffic & ROI.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">3+</span>
+          <div class="stat-label">Years Exp</div>
+        </div>
+        <div>
+          <span class="stat-num">4</span>
+          <div class="stat-label">Companies</div>
+        </div>
+        <div>
+          <span class="stat-num">75%</span>
+          <div class="stat-label">Traffic ↑</div>
+        </div>
+        <div>
+          <span class="stat-num">15+</span>
+          <div class="stat-label">Skills</div>
+        </div>
+      </div>
+      <div class="hero-contacts">
+        <a href="mailto:govindydav65525@gmail.com" class="contact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          govindydav65525@gmail.com
+        </a>
+        <a href="tel:+917033329508" class="contact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 70333 29508
+        </a>
+        <span class="contact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          New Delhi / Noida / Gurgaon
+        </span>
+        <span class="contact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l6 6 6-6"/></svg>
+          Hindi & English
+        </span>
+      </div>
+    </div>
+    <div class="avatar-block">
+      <div class="avatar">GK</div>
+      <div class="availability"><div class="dot"></div> Open to work</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="section-header">
+      <span class="section-title">Skills & Tools</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <span class="skill green">On-page SEO</span>
+      <span class="skill green">Off-page SEO</span>
+      <span class="skill green">Technical SEO</span>
+      <span class="skill green">Keyword Research & Analysis</span>
+      <span class="skill green">YouTube SEO</span>
+      <span class="skill green">Link Building</span>
+      <span class="skill green">SEO Audits</span>
+      <span class="skill purple">Google Analytics</span>
+      <span class="skill purple">Google Search Console</span>
+      <span class="skill purple">SEMrush</span>
+      <span class="skill purple">Ahrefs</span>
+      <span class="skill purple">Screaming Frog</span>
+      <span class="skill amber">Video Editing</span>
+      <span class="skill amber">Facebook Ads</span>
+      <span class="skill amber">Google Ads</span>
+      <span class="skill amber">E-commerce Marketing</span>
+      <span class="skill amber">Email Marketing</span>
+      <span class="skill amber">Campaign Optimization</span>
+      <span class="skill">Social Media Optimization (SMO)</span>
+      <span class="skill">Canva</span>
+      <span class="skill">Product Listing</span>
+      <span class="skill">Content Optimization</span>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="experience">
+    <div class="section-header">
+      <span class="section-title">Work Experience</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <span class="exp-company">Sam Web Studio</span>
+          <span class="exp-badge badge-current">Current · 2025 – Present</span>
+        </div>
+        <div class="exp-role">SEO Executive</div>
+        <ul class="exp-bullets">
+          <li>Executing complete SEO strategies for client websites (On-page, Off-page, Technical)</li>
+          <li>Managing keyword rankings, organic traffic growth & engagement metrics</li>
+          <li>Conducting detailed site audits and performance tracking for multiple clients</li>
+          <li>YouTube SEO & video optimization — titles, descriptions, tags, thumbnails</li>
+          <li>Collaborating on content strategy to align with SEO goals</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag">SEMrush</span>
+          <span class="tool-tag">Ahrefs</span>
+          <span class="tool-tag">Google Search Console</span>
+          <span class="tool-tag">YouTube Studio</span>
+          <span class="tool-tag">GA4</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <span class="exp-company">Adreno Technologies</span>
+          <span class="exp-badge badge-current">Sep 2024 – Present</span>
+        </div>
+        <div class="exp-role">SEO Executive</div>
+        <ul class="exp-bullets">
+          <li>Executed complete SEO strategies — On-page, Off-page & Technical SEO</li>
+          <li>Improved organic traffic, keyword rankings & user engagement</li>
+          <li>Conducted detailed site audits using SEMrush, Ahrefs & Screaming Frog</li>
+          <li>Fixed crawl issues, broken links, indexing errors & page speed problems</li>
+          <li>Led link-building campaigns & optimized internal linking structure</li>
+          <li>Monitored performance via Google Analytics & Search Console</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag">SEMrush</span>
+          <span class="tool-tag">Ahrefs</span>
+          <span class="tool-tag">Screaming Frog</span>
+          <span class="tool-tag">Google Analytics</span>
+          <span class="tool-tag">Search Console</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <span class="exp-company">Sagar Informatics Pvt. Ltd.</span>
+          <span class="exp-badge badge-past">Sep 2023 – Aug 2024</span>
+        </div>
+        <div class="exp-role">SEO Executive</div>
+        <ul class="exp-bullets">
+          <li>Increased organic traffic by 75% through targeted SEO optimization</li>
+          <li>Implemented strong on-page & technical SEO strategies across client sites</li>
+          <li>Managed link-building & internal linking campaigns</li>
+          <li>Conducted SEO audits to improve performance & keyword rankings</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag">Google Search Console</span>
+          <span class="tool-tag">Ahrefs</span>
+          <span class="tool-tag">On-page SEO</span>
+          <span class="tool-tag">Link Building</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <span class="exp-company">Imicreation IT Services</span>
+          <span class="exp-badge badge-past">Mar 2023 – Sep 2023</span>
+        </div>
+        <div class="exp-role">Digital Marketing Intern & SEO Executive</div>
+        <ul class="exp-bullets">
+          <li>Assisted in keyword research, on-page SEO & backlink outreach</li>
+          <li>Managed social media content for better engagement & reach</li>
+          <li>Supported Google Ads campaigns — ad copy, keyword optimization & tracking</li>
+          <li>Video editing for social media content & YouTube channel management</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag">Google Ads</span>
+          <span class="tool-tag">Canva</span>
+          <span class="tool-tag">Video Editing</span>
+          <span class="tool-tag">SMO</span>
+          <span class="tool-tag">Keyword Research</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section" id="education">
+    <div class="section-header">
+      <span class="section-title">Education</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">BCA</div>
+        <div class="edu-school">Bachelor of Computer Applications<br><span style="color: var(--accent);">Pursuing — Online</span></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Advanced Digital Marketing</div>
+        <div class="edu-school">Delhi Institute of Digital Marketing<br>New Delhi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-text">Built with ❤️ by <span>Govind Kumar</span> · New Delhi, India</div>
+    <div class="footer-links">
+      <a href="mailto:govindydav65525@gmail.com">Email</a>
+      <a href="tel:+917033329508">Call</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
